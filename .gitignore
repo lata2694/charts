@@ -1,0 +1,10 @@
+node_modules
+public
+.tmp
+tmp/*
+.sass-cache
+client/bower_components
+bundle
+.gradle
+.idea
+.env

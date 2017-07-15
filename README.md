@@ -1,1 +1,2 @@
-Welcome to charts.
+npm install
+npm start
