@@ -1,0 +1,41 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box; }
+
+#app {
+  padding: 10px; }
+
+.container {
+  width: 99%; }
+
+.clearfix {
+  content: '';
+  display: table;
+  clear: both; }
+
+a {
+  text-decoration: none; }
+
+header {
+  background: aliceblue;
+  padding: 10px;
+  border-radius: 10px;
+  margin: 10px; }
+  header h1 a {
+    float: left;
+    width: 102px;
+    padding: 80px 0px 0px 0px;
+    height: 0px;
+    background: url("../../assets/images/logo.png") no-repeat;
+    overflow: hidden;
+    display: inline-block;
+    background-size: contain; }
+  header span {
+    display: inline-block;
+    margin: 20px;
+    font-family: cursive;
+    font-size: 30px;
+    color: chocolate; }
+
+/*# sourceMappingURL=style.css.map */

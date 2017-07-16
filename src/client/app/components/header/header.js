@@ -8,19 +8,10 @@ class Header extends Component {
     render () {
         return (
           <div>
-            <header>
+            <header className="container clearfix">
 
-                <div>
-                    <h1><a href="#"></a> </h1>
-                </div>
-
-                <div>
-                    <p>small inroduction of app</p>
-                    <ul>
-                        <li> <a href="#">A</a> </li>
-                        <li><a href="#">B</a> </li>
-                    </ul>
-                </div>
+                <h1><a href=""></a> </h1>
+                <span> Charts </span>
 
             </header>
           </div>

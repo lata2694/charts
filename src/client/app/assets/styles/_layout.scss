@@ -1,0 +1,31 @@
+* {
+  margin:0px;
+  padding:0px;
+  box-sizing:border-box;
+}
+
+#app {
+  padding: 10px
+}
+
+.container {
+  width: 99%;
+}
+
+.clearfix {
+  content: '';
+  display:table;
+  clear:both;
+}
+
+//ul {
+//  list-style-type: none;
+//
+//  li{
+//    float: left;
+//  }
+//}
+
+a {
+  text-decoration: none;
+}

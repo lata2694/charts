@@ -2,8 +2,6 @@
  * Created by Lata Tiwari on 7/14/2017.
  */
 
-console.log("serve.js");
-
 import express from "express";
 import webpack from 'webpack';
 import config from './webpack.config';
