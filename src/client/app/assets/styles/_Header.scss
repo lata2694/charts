@@ -1,8 +1,12 @@
 header {
-  background: $header-color;
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#f0f9ff+0,cbebff+47,a1dbff+100;Blue+3D+%2313 */
+  background: rgb(240,249,255); /* Old browsers */
+  background: -moz-linear-gradient(bottom, rgba(240,249,255,1) 0%, rgba(203,235,255,1) 47%, rgba(161,219,255,1) 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(bottom, rgba(240,249,255,1) 0%,rgba(203,235,255,1) 47%,rgba(161,219,255,1) 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to top, rgba(240,249,255,1) 0%,rgba(203,235,255,1) 47%,rgba(161,219,255,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f9ff', endColorstr='#a1dbff',GradientType=0 ); /* IE6-9 */
   padding: 10px;
   border-radius: 10px;
-  margin:10px;
 
   h1 {
     a {
@@ -19,6 +23,7 @@ header {
   }
 
   span {
+    text-shadow: 1px 3px 4px;
     display: inline-block;
     margin: 20px;
     font-family: cursive;

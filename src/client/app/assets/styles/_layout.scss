@@ -9,7 +9,7 @@
 }
 
 .container {
-  width: 99%;
+  width: 100%;
 }
 
 .clearfix {
@@ -18,14 +18,29 @@
   clear:both;
 }
 
-//ul {
-//  list-style-type: none;
-//
-//  li{
-//    float: left;
-//  }
-//}
-
 a {
   text-decoration: none;
+}
+
+.view {
+  float:right;
+  border-radius: 10px;
+  padding: 10px;
+  border: 1px solid lightgrey;
+  width: 64%;
+  margin: 30px 0px;
+
+  &:hover {
+    box-shadow: 0 7px 25px rgba(0,0,0,.3);
+    transform: scale(1);
+  }
+}
+
+select {
+  height: 25px;
+  border-radius: 4px;
+}
+
+.display-chart {
+  margin:30px 0px;
 }

@@ -1,0 +1,26 @@
+.type-selector {
+  border-bottom: 1px solid darkgray;
+  padding-bottom: 10px;
+
+  span {
+    margin: 5px;
+    font-size: larger;
+    display: inline-block;
+    font-weight: bold;
+  }
+
+  button {
+    border: none;
+    float: right;
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-weight: 800;
+    outline:none;
+
+    &:hover {
+      background: $header-color;
+      border: 1px solid deepskyblue;
+      color:darkblue;
+    }
+  }
+}

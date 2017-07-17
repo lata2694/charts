@@ -1,0 +1,16 @@
+@mixin action-buttons ( $image ) {
+  position: relative;
+  background:url($image) center no-repeat;
+  width:30px;
+  height:30px;
+  background-size: contain;
+  border:none;
+  cursor: pointer;
+  border-radius: 50%;
+  outline:none;
+
+  &:hover {
+    width:32px;
+    height:32px;
+  }
+}

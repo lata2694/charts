@@ -3,9 +3,8 @@
 // import 'react-hot-loader/patch';
 
 import React, { Component } from 'react';
-import Header from './header/header';
-import Footer from './footer/Footer';
-import Main from './main/main';
+import Header from './header';
+import Main from './main';
 import '../assets/styles/style.scss';
 
 class App extends Component {
@@ -13,8 +12,7 @@ class App extends Component {
         return (
             <div>
                 <Header />
-                    <Main />
-                <Footer />
+                <Main />
             </div>
         );
     }

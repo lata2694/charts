@@ -6,8 +6,8 @@ import React, { Component } from 'react';
 class Chart extends Component {
     render () {
         return (
-            <div>
-                //render the chart
+            <div className="display-chart">
+
             </div>
         );
     }
