@@ -18,21 +18,12 @@ class Main extends Component {
     }
 
     gettingDataList = ( list ) => {
-        console.log("gettingDataList in main component is working");
-        console.log("list-------",list);
-
-        this.setState({ dataList: list },() => {
-            console.log(this.state.dataList,'----------------inside async')
-        });
+        this.setState({ dataList: list });
     };
 
     gettingType = ( chartType ) => {
-        console.log("gettingtype in main component is working");
-        console.log("charType-------",chartType);
 
-        this.setState({ type:  chartType}, () => {
-            console.log("type is---", this.state.type);
-        });
+        this.setState({ type:  chartType});
     };
 
     render () {

@@ -19,8 +19,6 @@ class SetData extends Component {
 
     addingField = () => {
         event.preventDefault();
-        console.log("----addingFields ---",this.validation());
-
         if( this.validation() ) {
             //toaster;
             alert("please add items and value");
@@ -31,17 +29,12 @@ class SetData extends Component {
                 item: this.state.item,
                 figure: this.state.figure
             };
-            console.log("----this.state.item ---",this.state.item);
-            console.log("----this.state.figure---",this.state.figure);
 
             localDatalist.push(obj);
-            // localDatalist.push({this.state.item:this.state.figure});
-            console.log("localDatalist-----------",localDatalist);
 
             this.setState({
                 dataList:localDatalist,
             },() => {
-                console.log("----this.state.dataList--", this.state.dataList);
                 this.props.gettingDataList( this.state.dataList );
             });
 
@@ -52,16 +45,12 @@ class SetData extends Component {
 
     removingField = ( item ) => {
         event.preventDefault();
-        console.log("----removingFields ---");
         let newDataList = [];
-        console.log("this.state.dataList--------",this.state.dataList);
 
         newDataList = this.state.dataList.filter ( function ( element ) {
-            console.log("inside filter--------");
             if( item !== element.item )  return element;
         } );
 
-        console.log("newDataList--------",newDataList);
         this.setState( {
             dataList: newDataList
         } );
@@ -69,22 +58,7 @@ class SetData extends Component {
     };
 
     onChangeHandler = (event) => {
-        console.log("----onChangeHandler for---", event);
-
-        console.log("----in the begning of on chnage handler----this.state.dataFields---", this.state.dataFields);
-
         ( event.target.name==='item' ) ? this.state.item = event.target.value : this.state.figure = parseInt(event.target.value);
-        console.log("this.state.item--------",this.state.item);
-        console.log("this.state.figure--------",this.state.figure);
-        // this.state.dataFields[event.target.name] = event.target.value;
-
-        // const { dataFields } = this.state;
-        // dataFields[event.target.name] = event.target.value;
-
-        // this.setState({dataFields:this.state.dataFields});
-
-
-        console.log("----this.state.dataFields---", this.state.dataFields);
     };
 
     validation = () => {
@@ -96,8 +70,6 @@ class SetData extends Component {
         let items = [];
 
         items = this.state.dataList.map( ( element,index ) =>  {
-            console.log("element--------",element);
-
             return ( <ItemList removingField={ this.removingField }
                                key = {index}
                                item= { element.item }

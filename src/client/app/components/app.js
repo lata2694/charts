@@ -1,7 +1,5 @@
 /*Created by Lata Tiwari on 7/14/2017.*/
 
-// import 'react-hot-loader/patch';
-
 import React, { Component } from 'react';
 import Header from './header';
 import Main from './main';
