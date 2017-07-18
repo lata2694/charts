@@ -33,7 +33,12 @@ select {
   border-radius: 4px; }
 
 .display-chart {
-  margin: 30px 0px; }
+  margin: 6px 0px; }
+
+.message {
+  color: grey;
+  font-size: 40px;
+  text-align: center; }
 
 header {
   /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#f0f9ff+0,cbebff+47,a1dbff+100;Blue+3D+%2313 */
@@ -156,6 +161,8 @@ aside {
     display: inline-block;
     font-weight: bold; }
   .type-selector button {
+    margin-left: 10px;
+    cursor: pointer;
     border: none;
     float: right;
     padding: 10px 20px;

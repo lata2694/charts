@@ -27,7 +27,7 @@ let config = {
             {
                 test: /\.jsx?/,
                 include: APP_DIR,
-                loader: 'babel-loader'
+                loader: 'babel-loader',
             },
 
             // {
@@ -52,7 +52,7 @@ let config = {
                         }
                     }
                 ]
-            }
+            },
 
             // {
             //     test: /\.scss$/,
@@ -60,17 +60,17 @@ let config = {
             // },
 
             // {
-                // test: /\.scss$/,
-                // loader: ExtractTextPlugin.extract('css!sass')
+            // test: /\.scss$/,
+            // loader: ExtractTextPlugin.extract('css!sass')
 
-                // test: /\.sass$/,
-                // exclude: /node_modules/,
-                // loader: ExtractTextPlugin.extract('style-loader', 'css!sass?indentedSyntax=true&sourceMap=true')
+            // test: /\.sass$/,
+            // exclude: /node_modules/,
+            // loader: ExtractTextPlugin.extract('style-loader', 'css!sass?indentedSyntax=true&sourceMap=true')
 
-                // loader: ExtractTextPlugin.extract(
-                //     // 'style', // The backup style loader
-                //     'css?sourceMap!sass?sourceMap'
-                // )
+            // loader: ExtractTextPlugin.extract(
+            //     // 'style', // The backup style loader
+            //     'css?sourceMap!sass?sourceMap'
+            // )
 
             // }
         ]
@@ -101,4 +101,3 @@ let config = {
 };
 
 module.exports = config;
-

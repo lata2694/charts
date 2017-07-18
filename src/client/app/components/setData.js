@@ -11,33 +11,43 @@ class SetData extends Component {
         super();
 
         this.state = {
-            dataList : [],
-            dataFields: {},
+            dataList: [],
+            item:'',
+            figure:0,
         };
-
-
     }
-
-    // onClickHandler = (e) => {
-    //     this.setState({ item: this.state.item + 1 });
-    // };
 
     addingField = () => {
         event.preventDefault();
-        console.log("----addingFields ---");
+        console.log("----addingFields ---",this.validation());
 
-        let localDatalist = this.state.dataList;
+        if( this.validation() ) {
+            //toaster;
+            alert("please add items and value");
+        } else {
+            let localDatalist = this.state.dataList;
 
-        localDatalist.push(this.state.dataFields);
+            let obj = {
+                item: this.state.item,
+                figure: this.state.figure
+            };
+            console.log("----this.state.item ---",this.state.item);
+            console.log("----this.state.figure---",this.state.figure);
 
-        this.setState({
-            dataList:localDatalist,
-        },()=>{
-            console.log("----this.state.dataList--", this.state.dataList);
-        });
+            localDatalist.push(obj);
+            // localDatalist.push({this.state.item:this.state.figure});
+            console.log("localDatalist-----------",localDatalist);
 
-        document.getElementById('item').value= '';
-        document.getElementById('figure').value=0;
+            this.setState({
+                dataList:localDatalist,
+            },() => {
+                console.log("----this.state.dataList--", this.state.dataList);
+                this.props.gettingDataList( this.state.dataList );
+            });
+
+            document.getElementById('item').value= '';
+            document.getElementById('figure').value= undefined;
+        }
     };
 
     removingField = ( item ) => {
@@ -53,21 +63,32 @@ class SetData extends Component {
 
         console.log("newDataList--------",newDataList);
         this.setState( {
-            dataList:newDataList
+            dataList: newDataList
         } );
 
     };
 
     onChangeHandler = (event) => {
-
         console.log("----onChangeHandler for---", event);
 
         console.log("----in the begning of on chnage handler----this.state.dataFields---", this.state.dataFields);
 
-        const { dataFields } = this.state;
-        dataFields[event.target.name] = event.target.value;
+        ( event.target.name==='item' ) ? this.state.item = event.target.value : this.state.figure = parseInt(event.target.value);
+        console.log("this.state.item--------",this.state.item);
+        console.log("this.state.figure--------",this.state.figure);
+        // this.state.dataFields[event.target.name] = event.target.value;
+
+        // const { dataFields } = this.state;
+        // dataFields[event.target.name] = event.target.value;
+
+        // this.setState({dataFields:this.state.dataFields});
+
 
         console.log("----this.state.dataFields---", this.state.dataFields);
+    };
+
+    validation = () => {
+        return ( this.state.item === '' || this.state.figure === 0 );
     };
 
     render() {

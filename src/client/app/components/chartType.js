@@ -24,15 +24,22 @@ class ChartType extends Component {
         });
     };
 
+    onBlurHandler = () => {
+        this.props.gettingType( this.state.type );
+        //disable dropbox
+    };
+
     render () {
         return (
             <div className="type-selector">
                 <span> Select Chart Type : </span>
-                <select name="chart-type" id="chartType" onChange={ this.onChangeHandler }>
+                <select name="chart-type"
+                        id="chartType"
+                        onChange={ this.onChangeHandler }
+                        onBlur={ this.onBlurHandler }>
                     <option value="Area Chart">Area Chart</option>
                     <option value="Bar Chart">Bar Chart</option>
                     <option value="Composed Chart">Composed Chart</option>
-                    <option value="Categorial Chart">Categorial Chart</option>
                     <option value="Line Chart">Line Chart</option>
                     <option value="Pie Chart">Pie Chart</option>
                     <option value="Radar Chart">Radar Chart</option>
@@ -42,6 +49,7 @@ class ChartType extends Component {
                 </select>
 
                 <button>Save</button>
+                <button>Show Chart</button>
 
             </div>
         );
