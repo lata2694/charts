@@ -3,8 +3,8 @@
  */
 
 import React, {Component} from 'react';
-class Fields extends Component {
 
+class Fields extends Component {
     constructor(props) {
         super(props);
     }

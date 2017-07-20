@@ -138,75 +138,9 @@ class Chart extends Component {
         return chart;
     };
 
-//     svg_to_png_replace =(target) =>{
-//     console.log("----------inisde svg_to_png_replace-------target is-------",target); //put your svg
-//
-//     let data, img;
-//     data = this.svg_to_png_data(target);
-//     img = new Image();
-//     img.src = data;
-//     console.log("----------inisde svg_to_png_replace-------img is-------",img); //put your svg
-//
-//     // return img;
-//     target.parentNode.replaceChild(img, target);
-// };
-//     svg_to_png_data =(target) =>{
-//
-//     console.log("----------inisde svg_to_png_data-------target is-------",target);
-//     console.log("----------baseURI-------",target.baseURI);
-//     console.log("----------inisde svg_to_png_data-------typeof target is-------",typeof target);
-//
-//         let ctx, mycanvas, svg_data, img, child;
-//
-//     // // Flatten CSS styles into the SVG
-//     for (let i = 0; i < target.childNodes.length; i++) {
-//
-//         child = target.childNodes[i];
-//         let cssStyle = window.getComputedStyle(child); //gives value of all the css eleemnents is a WEBAPI
-//         if(cssStyle){
-//             child.style.cssText = cssStyle.cssText; //cssText property sets or returns the contents of a style declaration as a string
-//         }
-//     }
-//
-//     // Construct an SVG image; xmlns is required for image/svg+xml files
-//     svg_data = '<svg xmlns="http://www.w3.org/2000/svg" width="' + target.width.baseVal.value +
-//         '" height="' + target.height.baseVal.value + '">' + target.innerHTML + '</svg>';
-//
-//     console.log("----------inisde svg_to_png_data svg_data-------",svg_data);
-//
-//     img = new Image();  //constructor creates a new HTMLImageElement instance
-//     img.src = "data:image/svg+xml," + encodeURIComponent(svg_data);
-//
-//     console.log("----------inisde svg_to_png_data new image is-------",img);
-//         console.log("target.offsetWidth----------",target.width.baseVal.value);
-//         console.log("target.offsetHeight----------",target.height.baseVal.value);
-//     // Draw the SVG image to a canvas
-//     mycanvas = document.createElement('canvas');
-//     mycanvas.width = target.width.baseVal.value;
-//     mycanvas.height = target.height.baseVal.value;
-//     ctx = mycanvas.getContext("2d");
-//     ctx.drawImage(img, 0, 0); //draws the image onto the canvas
-//     console.log("----------inisde svg_to_png_data canvas created is-------",mycanvas);
-//
-//     // Return the canvas's data
-//     console.log("----------inisde svg_to_png_data mycanvas.toDataURL('image/png')-------",mycanvas.toDataURL("image/png"));
-//     console.log("----------inisde svg_to_png_data mycanvas.toDataURL()-------",mycanvas.toDataURL());
-//     console.log(mycanvas.toDataURL());
-//
-//     return mycanvas.toDataURL("image/png"); //convert canvas to data uri
-// }
-
-// sth = () => {
-//         let target = document.getElementsByClassName("recharts-surface")[0];
-//         console.log("----------------------",target);
-//
-//         console.log("returned cvalue is-----",this.svg_to_png_replace(target));
-// }
-
     render () {
         return (
             <div className="display-chart" id="chartContainer">
-                {/*<button onClick={this.sth}>sth</button>*/}
                 {this.userChart( this.state.type, this.state.data )}
             </div> ) ;
     }

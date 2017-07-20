@@ -14,6 +14,5 @@ let config = {
 
 firebase.initializeApp(config);
 
-// Get a reference to the database service
 let database = firebase.database();
 export default database;

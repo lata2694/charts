@@ -3,15 +3,14 @@
  */
 
 import React, { Component } from 'react';
-class ChartType extends Component {
 
+class ChartType extends Component {
     constructor () {
         super();
         this.state = {
             type: '',
         }
     }
-
     onChangeHandler = ( event ) => { this.setState({ type:event.target.value }); };
 
     onClickHandler = ( event ) => {

@@ -6,7 +6,6 @@ import Fields from './fields';
 import ItemList from './itemList'
 
 class SetData extends Component {
-
     constructor() {
         super();
         this.state = {
@@ -15,7 +14,6 @@ class SetData extends Component {
             figure:0,
         };
     }
-
     addingField = () => {
         event.preventDefault();
         if( this.validation() ) {
@@ -33,7 +31,6 @@ class SetData extends Component {
             document.getElementById('figure').value= undefined;
         }
     };
-
     removingField = ( item ) => {
         event.preventDefault();
         let newDataList = [];
@@ -43,11 +40,9 @@ class SetData extends Component {
         this.setState({ dataList: newDataList });
 
     };
-
     onChangeHandler = (event) => {
         ( event.target.name==='item' ) ? this.state.item = event.target.value : this.state.figure = parseInt(event.target.value);
     };
-
     validation = () => { return ( this.state.item === '' || this.state.figure === 0 ) };
 
     render() {
@@ -59,7 +54,6 @@ class SetData extends Component {
                                figure= { element.figure }
             />)
         } );
-
         return (
             <aside id="setData">
                 <table>
@@ -75,7 +69,6 @@ class SetData extends Component {
                                 addingField={ this.addingField }
                         />
                         { items }
-
                     </tbody>
                 </table>
             </aside>
