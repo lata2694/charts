@@ -1,7 +1,6 @@
 /*Created by Lata Tiwari on 7/14/2017.*/
 
 import React, { Component } from 'react';
-import '../databaseConfig';
 import Header from './header';
 import Main from './main';
 import '../assets/styles/style.scss';

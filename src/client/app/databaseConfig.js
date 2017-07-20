@@ -1,7 +1,7 @@
 /**
  * Created by Lata Tiwari on 7/20/2017.
  */
-import * as firebase from 'firebase';
+export const firebase = require ('firebase');
 
 let config = {
     apiKey: "AIzaSyCaFCgokVDRd3eYbNq4rTxyUFl_o9EHMIk",
