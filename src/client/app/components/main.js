@@ -12,8 +12,8 @@ class Main extends Component {
     constructor () {
         super();
         this.state = {
-            dataList : [],
-            type: '',
+            dataList : [{item:"ada",figure:112}],
+            type: 'Area Chart',
         }
     }
     gettingDataList = ( list ) => { this.setState({ dataList: list }); };
@@ -22,10 +22,18 @@ class Main extends Component {
     saveChart = ( chart ) => {
         //stroing value in firebase
         //taking reference of db
-        let firebaseRef = firebase.database().ref();
+        let firebaseRef = firebase.database.ref();
         //will sore data corresponding to a random key
         firebaseRef.push().set( chart );
         document.getElementById('saveChart').disabled = true;
+
+        //sync data changes
+        // firebase.database.on('value', snapshot => {
+        //     //snapshot is snapshot of database which returns multiple things ex. keyname
+        //     console.log("firebase---sync data when changes are made---",snapshot.val());
+        // });
+
+        //verify token
     };
 
     render () {

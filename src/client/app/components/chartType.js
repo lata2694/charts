@@ -14,11 +14,10 @@ class ChartType extends Component {
 
     onChangeHandler = ( event ) => { this.setState({ type:event.target.value }); };
 
-    onBlurHandler = () => { document.getElementById("chartType").disabled = true; };
-
     onClickHandler = ( event ) => {
         event.preventDefault();
         this.props.gettingType( this.state.type );
+        document.getElementById("chartType").disabled = true;
         document.getElementById("showChart").disabled = true;
     };
 
@@ -28,7 +27,6 @@ class ChartType extends Component {
                 <span> Select type of chart: </span>
                 <select name="chart-type"
                         id="chartType"
-                        onBlur={ this.onBlurHandler }
                         onChange={ this.onChangeHandler }>
                     <option value="Select Chart">Select Chart</option>
                     <option value="Area Chart">Area Chart</option>
