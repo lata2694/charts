@@ -55,6 +55,14 @@ let config = {
             },
 
             // {
+            //     test: /\<svg/,
+            //     use: {
+            //         loader: 'svg-url-loader',
+            //         options: {}
+            //     }
+            // }
+
+            // {
             //     test: /\.scss$/,
             //     loaders: [ 'style-loader', 'css-loader?sourceMap', 'sass-loader?sourceMap' ]
             // },

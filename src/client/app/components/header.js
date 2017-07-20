@@ -9,10 +9,8 @@ class Header extends Component {
         return (
           <div>
             <header className="container clearfix">
-
-                <h1><a href=""></a> </h1>
+                <h1><a href="/">charts</a> </h1>
                 <span> Charts </span>
-
             </header>
           </div>
         );

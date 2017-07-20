@@ -8,7 +8,6 @@ import Chart from './chart';
 import NoChart from './noChart';
 
 class Main extends Component {
-
     constructor () {
         super();
         this.state = {
@@ -16,14 +15,11 @@ class Main extends Component {
             type: '',
         }
     }
+    gettingDataList = ( list ) => { this.setState({ dataList: list }); };
+    gettingType = ( chartType ) => { this.setState({ type:  chartType}); };
 
-    gettingDataList = ( list ) => {
-        this.setState({ dataList: list });
-    };
+    saveChart = () => {
 
-    gettingType = ( chartType ) => {
-
-        this.setState({ type:  chartType});
     };
 
     render () {
@@ -31,11 +27,10 @@ class Main extends Component {
             <div>
                 <SetData gettingDataList={ this.gettingDataList }/>
                 <div className="view">
-                    <SetType gettingType={ this.gettingType } />
-
+                    <SetType gettingType={ this.gettingType } saveChart={ this.saveChart } />
                     {
                         ( this.state.type && this.state.dataList.length )  ?
-                            <Chart type={ this.state.type } dataList={ this.state.dataList }/> :
+                            <Chart type={ this.state.type } dataList={ this.state.dataList } /> :
                             <NoChart />
                     }
                 </div>

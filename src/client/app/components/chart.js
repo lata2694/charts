@@ -2,6 +2,7 @@
  * Created by Lata Tiwari on 7/15/2017.
  */
 import React, { Component } from 'react';
+// require('svg-url-loader!');
 import { AreaChart,
     BarChart,
     ComposedChart,
@@ -10,7 +11,6 @@ import { AreaChart,
     RadarChart,
     RadialBarChart,
     ScatterChart,
-    Treemap,
     Line,
     XAxis,
     YAxis,
@@ -26,20 +26,17 @@ import { AreaChart,
     } from 'recharts';
 
 class Chart extends Component {
-
     constructor( props ){
         super( props );
         this.state= {
             data: this.props.dataList,
-            type: this.props.type
+            type: this.props.type,
         }
     };
 
     userChart = ( type, data ) => {
         let chart = '';
-
         switch ( type ) {
-
             case "Bar Chart" : chart = (
                                 <BarChart width={600} height={300} data={data} margin={{top: 5, right: 30, left: 20, bottom: 5}}>
                                     <XAxis dataKey="item"/>
@@ -66,15 +63,13 @@ class Chart extends Component {
                                 let COLORS = [];
                                 for ( let i =0; i<data.length; i++ )
                                     COLORS.push('#' + Math.floor(Math.random() * 16777215).toString(16));
-
                                 let RADIAN = Math.PI / 180;
                                 let renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent, index }) => {
                                     const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
                                     const x  = cx + radius * Math.cos(-midAngle * RADIAN);
                                     const y = cy  + radius * Math.sin(-midAngle * RADIAN);
-
                                     return (
-                                        <text x={x} y={y} fill="white" textAnchor={x > cx ? 'start' : 'end'} 	dominantBaseline="central">
+                                        <text x={x} y={y} fill="white" textAnchor={x > cx ? 'start' : 'end'} dominantBaseline="central">
                                             {`${(percent * 100).toFixed(0)}%`}
                                         </text>
                                     );
@@ -92,9 +87,7 @@ class Chart extends Component {
                                                     fill="#8884d8"
                                                     dataKey="figure"
                                                 >
-                                                    {
-                                                        data.map((entry, index) => <Cell key={index} fill={COLORS[index % COLORS.length]}/>)
-                                                    }
+                                                    { data.map((entry, index) => <Cell key={index} fill={COLORS[index % COLORS.length]}/>) }
                                                 </Pie>
                                             </PieChart>
                                         ); } break;
@@ -114,7 +107,6 @@ class Chart extends Component {
                                             left: 350,
                                             lineHeight: '24px'
                                         };
-
                                         chart = (
                                             <RadialBarChart width={500} height={300} cx={150} cy={150} innerRadius={20} outerRadius={140} barSize={10} data={data}>
                                                 <RadialBar minAngle={15} label background clockWise={true} dataKey='figure'/>
@@ -133,8 +125,7 @@ class Chart extends Component {
                                     );break;
 
             case "Area Chart" : chart  = (
-                            <AreaChart width={600} height={400} data={data}
-                                       margin={{top: 10, right: 30, left: 0, bottom: 0}}>
+                            <AreaChart width={600} height={400} data={data} margin={{top: 10, right: 30, left: 0, bottom: 0}}>
                                 <XAxis dataKey="item"/>
                                 <YAxis/>
                                 <CartesianGrid strokeDasharray="3 3"/>
@@ -144,14 +135,12 @@ class Chart extends Component {
                         );break;
             default : chart = "Please select a chart type"
         }
-
         return chart;
-
     };
 
     render () {
         return (
-            <div className="display-chart">
+            <div className="display-chart" id="chartContainer">
                 {this.userChart( this.state.type, this.state.data )}
             </div> ) ;
     }
