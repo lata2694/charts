@@ -27,14 +27,15 @@ let imageUri = (target) => {
 
 let onCanvas = ( target,img ) => {
     let ctx,  mycanvas, canvasUri;
-    mycanvas = document.createElement( 'canvas' );
-    mycanvas.width = target.width.baseVal.value;
-    mycanvas.height = target.height.baseVal.value;
-    ctx = mycanvas.getContext( "2d" );
-    ctx.drawImage(img, 0, 0);
+    setTimeout( function(){
+        mycanvas = document.createElement( 'canvas' );
+        mycanvas.width = target.width.baseVal.value;
+        mycanvas.height = target.height.baseVal.value;
+        ctx = mycanvas.getContext( "2d" );
+        ctx.drawImage(img, 0, 0);
 
-    canvasUri = mycanvas.toDataURL("image/png");
-    console.log("-------------",canvasUri);
+        canvasUri = mycanvas.toDataURL("image/png");
+    },1000 );
 };
 
 export default svgImage;
