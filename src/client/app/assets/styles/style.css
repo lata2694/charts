@@ -1,3 +1,5 @@
+@import url(toastr.css);
+@import url(animate.css);
 * {
   margin: 0px;
   padding: 0px;
@@ -26,7 +28,7 @@ a {
   margin: 30px 0px; }
   .view:hover {
     box-shadow: 0 7px 25px rgba(0, 0, 0, 0.3);
-    transform: scale(1); }
+    transform: scale(1.01); }
 
 select {
   height: 25px;
@@ -80,7 +82,7 @@ aside {
   margin: 30px 0px; }
   aside:hover {
     box-shadow: 0 7px 25px rgba(0, 0, 0, 0.3);
-    transform: scale(1); }
+    transform: scale(1.01); }
   aside .tooltip {
     z-index: 10;
     background: aliceblue;
@@ -102,9 +104,6 @@ aside {
     cursor: pointer;
     border-radius: 50%;
     outline: none; }
-    aside #remove-item:hover {
-      width: 32px;
-      height: 32px; }
     aside #remove-item:hover > .tooltip {
       display: block; }
   aside #add-item {
@@ -117,9 +116,6 @@ aside {
     cursor: pointer;
     border-radius: 50%;
     outline: none; }
-    aside #add-item:hover {
-      width: 32px;
-      height: 32px; }
     aside #add-item:hover > .tooltip {
       display: block; }
   aside table {
@@ -170,6 +166,8 @@ aside {
     font-weight: 800;
     outline: none; }
     .type-selector button:hover {
+      color: darkgray; }
+    .type-selector button:active {
       background: aliceblue;
       border: 1px solid deepskyblue;
       color: darkblue; }

@@ -16,7 +16,8 @@ class Main extends Component {
             dataList : [],
             type: '',
         }
-    }
+    };
+
     gettingDataList = ( list ) => { this.setState({ dataList: list }); };
     gettingType = ( chartType ) => { this.setState({ type:  chartType}); };
 
@@ -25,8 +26,9 @@ class Main extends Component {
         return ( svgImage( target ));
     };
 
-    saveChart = ( ) => {
-        let dataImageUri = this.convertingChart();
+    validation = () => (!!(this.state.type && this.state.dataList.length ));
+
+    databaseInteraction = ( dataImageUri ) => {
 
         //stroing value in firebase
 
@@ -35,8 +37,6 @@ class Main extends Component {
 
         //will sore data corresponding to a random key
         firebaseRef.push().set( dataImageUri );
-
-        document.getElementById('saveChart').disabled = true;
 
         //sync data changes
         // firebase.database.on('value', snapshot => {
@@ -47,6 +47,15 @@ class Main extends Component {
         //verify token
     };
 
+    saveChart = ( ) => {
+        if ( !this.validation() ) {
+            alert ("There's no chart");
+            return;
+        }
+        this.databaseInteraction( this.convertingChart() );
+        document.getElementById('saveChart').disabled = true;
+    };
+
     render () {
         return (
             <div>
@@ -54,7 +63,7 @@ class Main extends Component {
                 <div className="view">
                     <SetType gettingType={ this.gettingType } saveChart={ this.saveChart } />
                     {
-                        ( this.state.type && this.state.dataList.length )  ?
+                        ( this.validation() )  ?
                             <Chart type={ this.state.type } dataList={ this.state.dataList } /> :
                             <NoChart />
                     }

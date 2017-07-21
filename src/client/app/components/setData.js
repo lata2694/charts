@@ -19,17 +19,18 @@ class SetData extends Component {
         if( this.validation() ) {
             //toaster;
             alert("Please add items and value");
-        } else {
-            let localDatalist = this.state.dataList;
-            let obj = {
-                item: this.state.item,
-                figure: this.state.figure
-            };
-            localDatalist.push(obj);
-            this.setState({ dataList:localDatalist },() => { this.props.gettingDataList( this.state.dataList ); });
-            document.getElementById('item').value= '';
-            document.getElementById('figure').value= undefined;
+            return ;
         }
+        let localDatalist = this.state.dataList;
+        let obj = {
+            item: this.state.item,
+            figure: this.state.figure
+        };
+        localDatalist.push(obj);
+        this.setState({ dataList:localDatalist },() => { this.props.gettingDataList( this.state.dataList ); });
+        document.getElementById('item').value= '';
+        document.getElementById('figure').value= undefined;
+
     };
     removingField = ( item ) => {
         event.preventDefault();
@@ -59,16 +60,16 @@ class SetData extends Component {
                 <table>
                     <caption> Enter Data</caption>
                     <thead>
-                        <tr>
-                            <th>Item Name</th>
-                            <th colSpan={3}>Item Value</th>
-                        </tr>
+                    <tr>
+                        <th>Item Name</th>
+                        <th colSpan={3}>Item Value</th>
+                    </tr>
                     </thead>
                     <tbody>
-                        <Fields onChangeHandler={this.onChangeHandler}
-                                addingField={ this.addingField }
-                        />
-                        { items }
+                    <Fields onChangeHandler={this.onChangeHandler}
+                            addingField={ this.addingField }
+                    />
+                    { items }
                     </tbody>
                 </table>
             </aside>
@@ -77,5 +78,3 @@ class SetData extends Component {
 }
 
 export default SetData;
-
-
