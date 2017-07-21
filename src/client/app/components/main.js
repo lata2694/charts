@@ -13,8 +13,8 @@ class Main extends Component {
     constructor () {
         super();
         this.state = {
-            dataList : [],
-            type: '',
+            dataList : [{item:"fgjd",figure:4256}],
+            type: 'Area Chart',
         }
     };
 
@@ -38,12 +38,6 @@ class Main extends Component {
         //will sore data corresponding to a random key
         firebaseRef.push().set( dataImageUri );
 
-        //sync data changes
-        // firebase.database.on('value', snapshot => {
-        //     //snapshot is snapshot of database which returns multiple things ex. keyname
-        //     console.log("firebase---sync data when changes are made---",snapshot.val());
-        // });
-
         //verify token
     };
 
@@ -52,8 +46,8 @@ class Main extends Component {
             alert ("There's no chart");
             return;
         }
-        this.databaseInteraction( this.convertingChart() );
         document.getElementById('saveChart').disabled = true;
+        this.databaseInteraction( this.convertingChart() );
     };
 
     render () {

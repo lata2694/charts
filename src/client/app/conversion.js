@@ -3,16 +3,15 @@
  */
 
 let svgImage = (target) => {
-    let source, img;
-    source = imageUri(target);
+    let img;
     img = new Image();
-    img.src = source.canvasUri;
-    return source.dataImageUri;
-    // target.parentNode.replaceChild(img, target);
+    img.src = imageUri(target);
+    target.parentNode.replaceChild(img, target);
+    return (img.src);
 };
 
 let imageUri = (target) => {
-    let ctx, mycanvas, svg_data, img, child, uri, canvasUri, uriObject;
+    let mycanvas, svg_data, img, child;
     for (let i = 0; i < target.childNodes.length; i++) {
         child = target.childNodes[i];
         let cssStyle = window.getComputedStyle(child);
@@ -21,17 +20,21 @@ let imageUri = (target) => {
     svg_data = '<svg xmlns="http://www.w3.org/2000/svg" width="' + target.width.baseVal.value + '" height="' + target.height.baseVal.value + '">' + target.innerHTML + '</svg>';
     img = new Image();
     img.src = "data:image/svg+xml," + encodeURIComponent(svg_data);
-    uri = img.src;
+    img.id = "chart-image";
+    img.onload = onCanvas( target,img );
+    return (img.src);
+};
+
+let onCanvas = ( target,img ) => {
+    let ctx,  mycanvas, canvasUri;
     mycanvas = document.createElement( 'canvas' );
     mycanvas.width = target.width.baseVal.value;
     mycanvas.height = target.height.baseVal.value;
     ctx = mycanvas.getContext( "2d" );
     ctx.drawImage(img, 0, 0);
+
     canvasUri = mycanvas.toDataURL("image/png");
-    uriObject = {
-        "dataImageUri" : uri,
-        "canvasUri" : canvasUri
-    };
-    return uriObject;
+    console.log("-------------",canvasUri);
 };
+
 export default svgImage;
