@@ -7,14 +7,14 @@ import SetType from './chartType';
 import Chart from './chart';
 import NoChart from './noChart';
 import database , { firebase } from '../databaseConfig';
-import svgImage from '../conversion';
+import renderImage from '../conversion';
 
 class Main extends Component {
     constructor () {
         super();
         this.state = {
-            dataList : [{item:"fgjd",figure:4256}],
-            type: 'Area Chart',
+            dataList : [],
+            type: '',
         }
     };
 
@@ -22,32 +22,41 @@ class Main extends Component {
     gettingType = ( chartType ) => { this.setState({ type:  chartType}); };
 
     convertingChart = () => {
-        let target = document.getElementsByClassName( "recharts-surface" )[0];
-        return ( svgImage( target ));
+        let target;
+        target = document.getElementsByClassName( "recharts-surface" )[0];
+        renderImage( target );
     };
 
     validation = () => (!!(this.state.type && this.state.dataList.length ));
 
-    databaseInteraction = ( dataImageUri ) => {
+    databaseInteraction = () => {
 
-        //stroing value in firebase
+        let firebaseRef, token, image, count=1;
+        this.convertingChart();
 
-        //taking reference of db
-        let firebaseRef = firebase.database().ref();
+        image = document.getElementById( "charts-png" );
 
-        //will sore data corresponding to a random key
-        firebaseRef.push().set( dataImageUri );
-
-        //verify token
+        image.addEventListener( "load", () => {
+            if ( count === 1 ) {
+                firebaseRef = firebase.database().ref();
+                token = firebaseRef.push().set( image.src );
+                console.log("token----",token);
+                count = count+1;
+                return;
+            } else {
+                count = count+1;
+                return;
+            }
+        } );
     };
 
-    saveChart = ( ) => {
+    saveChart = () => {
         if ( !this.validation() ) {
             alert ("There's no chart");
             return;
         }
         document.getElementById('saveChart').disabled = true;
-        this.databaseInteraction( this.convertingChart() );
+        this.databaseInteraction();
     };
 
     render () {
