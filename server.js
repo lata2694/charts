@@ -5,9 +5,10 @@
 import express from "express";
 import webpack from 'webpack';
 import config from './webpack.config';
+import database from './src/server/databaseConfig';
 
 const app = express();
-const port = "3000";
+const port = "9000";
 const compiler = webpack(config);
 
 app.use( require( 'webpack-dev-middleware' ) ( compiler, {
@@ -16,10 +17,19 @@ app.use( require( 'webpack-dev-middleware' ) ( compiler, {
     historyApiFallback: true,
 } ) );
 
+
 app.use( require( 'webpack-hot-middleware')( compiler ));
 
 app.use ( '/*', ( req, res, next ) => {
     res.sendFile(__dirname+'\\src\\client\\index.html');
 } );
 
-app.listen( port );
+app.listen( port, ()=>{
+    console.log("server started");
+});
+
+database.on("child_added",snapshot => {
+    console.log("snapshot--------",snapshot.key);
+});
+
+

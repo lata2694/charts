@@ -40,7 +40,7 @@ class ChartType extends Component {
                     <option value="Radial Bar Chart">Radial Bar Chart</option>
                     <option value="Scatter Chart">Scatter Chart</option>
                 </select>
-                <button id="saveChart" onClick={ this.props.saveChart}>Save</button>
+                <button id="saveChart" onClick={ this.props.saveChart}>Export</button>
                 <button id="showChart" onClick={ this.onClickHandler }>Show Chart</button>
             </div>
         );
