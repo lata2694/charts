@@ -20,10 +20,10 @@ a {
   text-decoration: none; }
 
 .view {
-  float: right;
-  border-radius: 10px;
-  padding: 10px;
   border: 1px solid lightgrey;
+  border-radius: 10px;
+  float: right;
+  padding: 10px;
   width: 64%;
   margin: 30px 0px; }
   .view:hover {
@@ -41,6 +41,16 @@ select {
   color: grey;
   font-size: 40px;
   text-align: center; }
+
+.entry-fields {
+  width: 99%;
+  text-align: center;
+  border-radius: 4px;
+  height: 25px;
+  padding: 3px; }
+
+.main {
+  position: relative; }
 
 header {
   /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#f0f9ff+0,cbebff+47,a1dbff+100;Blue+3D+%2313 */
@@ -74,10 +84,10 @@ header {
     color: chocolate; }
 
 aside {
-  display: inline-block;
-  border-radius: 10px;
-  padding: 10px;
   border: 1px solid lightgrey;
+  border-radius: 10px;
+  display: inline-block;
+  padding: 10px;
   width: 35%;
   margin: 30px 0px; }
   aside:hover {
@@ -141,12 +151,6 @@ aside {
     aside table td, aside table th {
       padding: 5px 0px;
       text-align: center; }
-    aside table .entry-fields {
-      width: 99%;
-      text-align: center;
-      border-radius: 4px;
-      height: 25px;
-      padding: 3px; }
 
 .type-selector {
   border-bottom: 1px solid darkgray;
@@ -168,6 +172,59 @@ aside {
     .type-selector button:hover {
       color: darkgray; }
     .type-selector button:active {
+      background: aliceblue;
+      border: 1px solid deepskyblue;
+      color: darkblue; }
+
+.modal {
+  border: 1px solid lightgrey;
+  border-radius: 10px;
+  height: 130px;
+  box-shadow: 10px 10px 5px #888888;
+  z-index: 3;
+  padding: 30px 10px;
+  background: #f0f9ff;
+  /* Old browsers */
+  background: -moz-linear-gradient(bottom, #f0f9ff 0%, #cbebff 47%, #a1dbff 100%);
+  /* FF3.6-15 */
+  background: -webkit-linear-gradient(bottom, #f0f9ff 0%, #cbebff 47%, #a1dbff 100%);
+  /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to top, #f0f9ff 0%, #cbebff 47%, #a1dbff 100%);
+  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f9ff', endColorstr='#a1dbff',GradientType=0 );
+  /* IE6-9 */
+  position: absolute;
+  width: 50%;
+  left: 25%;
+  top: 50%; }
+  .modal form label {
+    display: block;
+    border-bottom: 1px solid darkgray;
+    font-weight: bold; }
+    .modal form label span {
+      float: right;
+      color: grey;
+      cursor: pointer;
+      margin: 0px 10px 0px; }
+  .modal form .entry-fields {
+    height: 30px;
+    margin: 10px;
+    background: white;
+    width: 80%; }
+  .modal form input[type="submit"] {
+    margin: 3px 10px;
+    display: block;
+    margin-left: 10px;
+    cursor: pointer;
+    border: none;
+    float: right;
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-weight: 800;
+    outline: none; }
+    .modal form input[type="submit"]:hover {
+      color: darkgray; }
+    .modal form input[type="submit"]:active {
       background: aliceblue;
       border: 1px solid deepskyblue;
       color: darkblue; }

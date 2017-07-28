@@ -1,8 +1,8 @@
+
 aside {
+  @include borders;
   display: inline-block;
-  border-radius: 10px;
   padding: 10px;
-  border: 1px solid lightgrey;
   width: 35%;
   margin: 30px 0px;
 
@@ -57,20 +57,12 @@ aside {
       background: -webkit-linear-gradient(bottom, rgba(252,255,244,1)2%,rgba(223,229,215,1) 42%); /* Chrome10-25,Safari5.1-6 */
       background: linear-gradient(to top, rgba(252,255,244,1) 2%,rgba(223,229,215,1) 42%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
       filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fcfff4', endColorstr='#dfe5d7',GradientType=0 ); /* IE6-9 */
-      border-bottom: 1px solid darkgray;
+      @include borderBottom;
     }
 
     td, th {
       padding: 5px 0px;
       text-align: center;
-    }
-
-    .entry-fields {
-      width: 99%;
-      text-align: center;
-      border-radius: 4px;
-      height: 25px;
-      padding: 3px;
     }
   }
 }

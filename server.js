@@ -5,7 +5,8 @@
 import express from "express";
 import webpack from 'webpack';
 import config from './webpack.config';
-import database from './src/server/databaseConfig';
+import database, { admin } from './src/server/databaseConfig';
+import sendingMail from './src/server/mailConfig';
 
 const app = express();
 const port = "9000";
@@ -28,8 +29,14 @@ app.listen( port, ()=>{
     console.log("server started");
 });
 
-database.on("child_added",snapshot => {
-    console.log("snapshot--------",snapshot.key);
-});
+// database.on("child_added",snapshot => {
+//     console.log("snapshot--------",snapshot.key);
+// });
 
+// database.on("child_added", function(snapshot, prevChildKey) {
+//     let newPost = snapshot.key;
+//     console.log("newPost-------------" + newPost);
+//     console.log("prevChildKey-------------" + prevChildKey);
+// });
 
+// sendingMail( { to:`lata.tiwari@tothenew.com`, html: `` } );

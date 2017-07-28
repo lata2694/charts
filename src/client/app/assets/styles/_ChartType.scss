@@ -1,5 +1,5 @@
 .type-selector {
-  border-bottom: 1px solid darkgray;
+  @include borderBottom;
   padding-bottom: 10px;
 
   span {

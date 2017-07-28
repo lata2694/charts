@@ -20,8 +20,8 @@ class ChartType extends Component {
             return;
         }
         this.props.gettingType( this.state.type );
-        document.getElementById("chartType").disabled = true;
-        document.getElementById("showChart").disabled = true;
+        // document.getElementById("chartType").disabled = true;
+        // document.getElementById("showChart").disabled = true;
     };
 
     render () {
@@ -42,6 +42,7 @@ class ChartType extends Component {
                 </select>
                 <button id="saveChart" onClick={ this.props.saveChart}>Export</button>
                 <button id="showChart" onClick={ this.onClickHandler }>Show Chart</button>
+                <button id="clearAll" onClick={ this.props.emptyData }>Clear All</button>
             </div>
         );
     }

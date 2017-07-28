@@ -1,6 +1,6 @@
 /*Created by Lata Tiwari on 7/20/2017.*/
 
-import * as firebase from 'firebase';
+export const firebase = require( 'firebase' );
 let config, database;
 
 //firebase configuration for client side app
@@ -16,5 +16,4 @@ config = {
 firebase.initializeApp ( config );
 
 database = firebase.database().ref();
-
 export default database;

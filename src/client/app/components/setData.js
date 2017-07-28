@@ -39,7 +39,6 @@ class SetData extends Component {
             if( item !== element.item )  return element;
         } );
         this.setState({ dataList: newDataList });
-
     };
     onChangeHandler = (event) => {
         ( event.target.name==='item' ) ? this.state.item = event.target.value : this.state.figure = parseInt(event.target.value);

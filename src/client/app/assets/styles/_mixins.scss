@@ -30,3 +30,12 @@
     color:darkblue;
   }
 }
+
+@mixin borders {
+  border: 1px solid lightgrey;
+  border-radius: 10px;
+}
+
+@mixin borderBottom {
+  border-bottom: 1px solid darkgray;
+}
