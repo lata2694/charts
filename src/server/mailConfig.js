@@ -6,13 +6,6 @@ let nodemailer = require('nodemailer');
 
 let transporter, sendingMail;
 
-// message = {
-//     from: 'lata.tiwari@tothenew.com',
-//     to : params.to,
-//     subject : params.subject,
-//     html: params.html,
-// };
-
 transporter = nodemailer.createTransport({
     service: 'Gmail',
     auth: {
@@ -23,19 +16,7 @@ transporter = nodemailer.createTransport({
     debug: true // include SMTP traffic in the logs
 });
 
-// transporter.sendMail( message, (error, info) => {
-//     if (error) {
-//         return console.log(error);
-//     }
-//     console.log('Message %s sent: %s', info.messageId, info.response);
-// });
-
-
 sendingMail = ( params ) => {
-    console.log("-------------inside sendingMail------------------------------------------------------------");
-    // this.from = 'lata.tiwari@tothenew.com';
-
-    // this.send = function() {
         let options = {
             from : 'lata.tiwari@tothenew.com',
             to : params.to,
@@ -44,7 +25,6 @@ sendingMail = ( params ) => {
         };
 
         transporter.sendMail(options);
-    // }
 };
 
 export default sendingMail;

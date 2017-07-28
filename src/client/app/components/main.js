@@ -10,11 +10,6 @@ import CustomModal from './modal';
 import renderImage from '../conversion';
 import database, { firebase } from '../../databaseConfig';
 
-
-// let provider = new firebase.auth.GoogleAuthProvider();
-
-// let firebaseRef = util.firebase.database().ref();
-
 class Main extends Component {
     constructor () {
         super();
@@ -22,6 +17,7 @@ class Main extends Component {
             dataList : [{item:"jflfajg",figure:53745}],
             type: 'Area Chart',
             isOpen: false,
+            newPost:'',
         }
     };
 
@@ -40,14 +36,11 @@ class Main extends Component {
 
     validation = () => (!!(this.state.type && this.state.dataList.length ));
 
-    closeModal = () => { console.log("inside close modal"); this.setState({ isOpen : false }); };
+    closeModal = () => { this.setState({ isOpen : false }); };
 
     databaseInteraction = () => {
 
-        let token, image, count=1;
-
-        // console.log("sign in with google");
-        // firebase.auth().signInWithRedirect(provider);
+        let token, image, count=1, newPost;
 
         this.convertingChart();
 
@@ -57,33 +50,8 @@ class Main extends Component {
         {
             let storedKey;
             if ( count === 1 ) {
-                // console.log("image source---------",image.src);
-
-                // this.authorizingUser();
-
-                // sendingMail( { to:`puja.goyal@tothenew.com`, html: `<p> hagjkghjkdf </p>` } );
-
-                // this.saveUrl( image );
-
-                // token = firebaseRef.push().set( image.src );
-                // // console.log("token----",token);
-                //
-                // // key = firebase.database().orderByChild('item').once('value').then(function(snapshot) {
-                // //     cosole.log("snapshot------", snapshot);
-                // // });
-                //
-                // // let userId = firebase.auth().currentUser.uid;
-                // storedKey = firebase.database().ref().once('value').then(function(snapshot) {
-                //     // let username = snapshot.val().username;
-                //     // ...
-                //
-                //         console.log("snapshot------", snapshot);
-                //
-                // });
-                //
-                //
-                // console.log("key------", storedKey);
-
+                newPost = this.saveUrl( image );
+                this.setState ({ newPost : newPost });
                 count = count+1;
                 return;
             } else {
@@ -93,45 +61,34 @@ class Main extends Component {
         } );
     };
 
-    saveUrl = ( image ) => {
-        database.push().set( image.src );
+    mail = ( newPost, emailTo ) => {
+        console.log("insdie mail function, newPost--------",newPost);
+        console.log("insdie mail function, emailTo--------",emailTo);
 
-        // database.on("child_added", function(snapshot, prevChildKey) {
-        //     let newPost = snapshot.key;
-        //     console.log("newPost-------------" + newPost);
-        //     console.log("prevChildKey-------------" + prevChildKey);
-        // });
+        let payload = {
+            newPost : newPost,
+            emailTo : emailTo
+        };
+        fetch('/sendMail',
+            { method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body:JSON.stringify(payload)
+            })
+            .then ( (data)=> console.log("inside then, data------",data) )
+            .catch( (err)=> console.log("inside catch, err------",err) );
     };
 
-    authorizingUser = () => {
-        // console.log("sign in with google");
-        //
-        // firebase.auth().signInWithRedirect(provider);
-        // console.log("result of sign in");
+    saveUrl = ( image ) => {
+        let newPost;
+        database.push().set( image.src );
 
-        // firebase.auth().getRedirectResult().then(function(result) {
-        //     if (result.credential) {
-        //         // This gives you a Google Access Token. You can use it to access the Google API.
-        //         let token = result.credential.accessToken;
-        //         console.log("token--------",token);
-        //
-        //         // ...
-        //     }
-        //     // The signed-in user info.
-        //     let user = result.user;
-        //     console.log("user--------",user);
-        // }).catch(function(error) {
-        //     console.log("error--------",error);
-        //
-        //     // Handle Errors here.
-        //     let errorCode = error.code;
-        //     let errorMessage = error.message;
-        //     // The email of the user's account used.
-        //     let email = error.email;
-        //     // The firebase.auth.AuthCredential type that was used.
-        //     let credential = error.credential;
-        //     // ...
-        // });
+        database.on("child_added", function(snapshot, prevChildKey) {
+            newPost = snapshot.key;
+        });
+        return newPost;
     };
 
     saveChart = ( event ) => {
@@ -141,14 +98,13 @@ class Main extends Component {
             return;
         }
         this.setState({ isOpen: true });
-        // document.getElementById('saveChart').disabled = true;
         this.databaseInteraction();
     };
 
     render () {
         return (
             <div className="main">
-                { ( this.state.isOpen ) ?  <CustomModal closeModal={ this.closeModal }/> : ''}
+                { ( this.state.isOpen ) ?  <CustomModal closeModal={ this.closeModal } mail={ this.mail } newPost={ this.state.newPost }/> : ''}
                 <SetData gettingDataList={ this.gettingDataList }/>
                 <div className="view">
                     <SetType gettingType={ this.gettingType } saveChart={ this.saveChart } emptyData={ this.emptyData }/>
