@@ -35,7 +35,7 @@ app.get( '/image', ( request, response ) => {
     database.on("child_added", function(snapshot, prevChildKey) {
         let uri = '';
         ( request.query.post === snapshot.key ) ? uri = snapshot.val() : '';
-        const html = ReactDOMServer.renderToString(<Result source={ uri } sth="fhjhagj"/>);
+        const html = ReactDOMServer.renderToString(<Result source={ uri } />);
         response.send(`<!doctype html>${html}`);
     });
 });
