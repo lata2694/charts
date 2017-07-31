@@ -10,7 +10,9 @@ class Result extends Component {
     render(){
         return(
             <div>
-                <img src={ this.props.source } alt="chart"/>
+                { ( this.props.source==='' ) ? <img src="../../../client/app/assets/images/error.png" alt="maybe th link expired"/>
+                    : <img src={ this.props.source } alt="chart"/>
+                }
             </div>
         );
     }
