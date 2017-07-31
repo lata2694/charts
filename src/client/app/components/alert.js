@@ -9,60 +9,38 @@ const ToastMessageFactory = React.createFactory(ToastMessage.animation);
 export default class Alert extends Component {
     constructor( props ){
         super( props );
-        //
-        // let type = this.props.alertType;
-        // if( type === 'error' ) {
-        //     this.refs.container.error(`${ this.props.message }`, ` `, {
-        //         closeButton: true,
-        //     });
-        //     return;
-        // }
-        //
-        // if ( type === 'success' ) {
-        //     this.refs.container.success(`${ this.props.message }`, ` `, {
-        //         closeButton: true,
-        //     });
-        //     return;
-        // }
+        this.state={
+            alertType:'',
+            message:''
+        }
+
     };
 
     componentWillReceiveProps = ( nextProps )=> {
-            console.log("before alert component");
-        let type = this.props.alertType;
-        let messgae = this.props.message;
+        if ( nextProps!= this.props ) {
+            this.setState({ alertType: nextProps.alertType, message: nextProps.message }, ()=> {
+                this.alert( this.state.alertType, this.state.message );
+            });
+        }
+
+    };
+
+
+    alert = ( type, message) => {
         if( type === 'error' ) {
-            this.refs.container.error(`${ messgae }`, ` `, {
+            this.refs.container.error(`${ message }`, ` `, {
                 closeButton: true,
             });
             return;
         }
 
         if ( type === 'success' ) {
-            this.refs.container.success(`${ messgae }`, ` `, {
+            this.refs.container.success(`${ message }`, ` `, {
                 closeButton: true,
             });
             return;
         }
     };
-
-    // componentDidMount = () => {
-    //     console.log("after alert component");
-    //     let type = this.props.alertType;
-    //         if( type === 'error' ) {
-    //             this.refs.container.error(`${ this.props.message }`, ` `, {
-    //                 closeButton: true,
-    //             });
-    //             return;
-    //         }
-    //
-    //         if ( type === 'success' ) {
-    //             this.refs.container.success(`${ this.props.message }`, ` `, {
-    //                 closeButton: true,
-    //             });
-    //             return;
-    //         }
-    //
-    // };
 
     render(){
         return(
