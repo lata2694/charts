@@ -30,13 +30,6 @@ let config = {
                 loader: 'babel-loader',
             },
 
-            // {
-            //     test: /\.js$/,
-            //     include: APP_DIR,
-            //     loaders: ['react-hot-loader', 'babel-loader'],
-            //     // include: path.join(__dirname, 'src')
-            // },1
-
             {
                 test: /\.scss$/,
                 loaders: ['style-loader', 'css-loader', 'sass-loader']
@@ -53,34 +46,6 @@ let config = {
                     }
                 ]
             },
-
-            // {
-            //     test: /\<svg/,
-            //     use: {
-            //         loader: 'svg-url-loader',
-            //         options: {}
-            //     }
-            // }
-
-            // {
-            //     test: /\.scss$/,
-            //     loaders: [ 'style-loader', 'css-loader?sourceMap', 'sass-loader?sourceMap' ]
-            // },
-
-            // {
-            // test: /\.scss$/,
-            // loader: ExtractTextPlugin.extract('css!sass')
-
-            // test: /\.sass$/,
-            // exclude: /node_modules/,
-            // loader: ExtractTextPlugin.extract('style-loader', 'css!sass?indentedSyntax=true&sourceMap=true')
-
-            // loader: ExtractTextPlugin.extract(
-            //     // 'style', // The backup style loader
-            //     'css?sourceMap!sass?sourceMap'
-            // )
-
-            // }
         ]
     },
 
@@ -95,10 +60,6 @@ let config = {
 
         new webpack.optimize.OccurrenceOrderPlugin(),
         new webpack.HotModuleReplacementPlugin(),
-
-        // new ExtractTextPlugin(APP_DIR+'/assets/styles/style.scss', {
-        //     allChunks: true
-        // })
     ],
 
     devServer: {

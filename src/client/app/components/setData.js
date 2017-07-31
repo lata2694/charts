@@ -3,7 +3,7 @@
  */
 import React, {Component} from 'react';
 import Fields from './fields';
-import ItemList from './itemList'
+import ItemList from './itemList';
 
 class SetData extends Component {
     constructor() {
@@ -17,8 +17,7 @@ class SetData extends Component {
     addingField = () => {
         event.preventDefault();
         if( this.validation() ) {
-            //toaster;
-            alert("Please add items and value");
+            this.props.forAlert( `error`, "Please add items and value" );
             return ;
         }
         let localDatalist = this.state.dataList;

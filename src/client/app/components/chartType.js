@@ -16,7 +16,7 @@ class ChartType extends Component {
     onClickHandler = ( event ) => {
         event.preventDefault();
         if( this.state.type === '' ) {
-            alert("Please select a type of chart");
+            this.props.forAlert( 'error', "Please select a type of chart" );
             return;
         }
         this.props.gettingType( this.state.type );

@@ -14,6 +14,7 @@ class CustomModal extends Component {
        let emailTo = document.getElementById('reciever').value;
        this.props.mail( this.props.newPost, emailTo );
        this.props.closeModal();
+        this.props.forAlert( `sucsess`, `Mail Sent` );
     };
 
     render () {

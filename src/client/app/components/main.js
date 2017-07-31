@@ -8,6 +8,7 @@ import Chart from './chart';
 import NoChart from './noChart';
 import CustomModal from './modal';
 import renderImage from '../conversion';
+import Alert from './alert';
 import database, { firebase } from '../../databaseConfig';
 
 class Main extends Component {
@@ -18,6 +19,8 @@ class Main extends Component {
             type: '',
             isOpen: false,
             newPost:'',
+            alertType:'',
+            message:'',
         }
     };
 
@@ -89,24 +92,41 @@ class Main extends Component {
     saveChart = ( event ) => {
         event.preventDefault();
         if ( !this.validation() ) {
-            alert ("There's no chart");
+            this.setState({ alertType: `error`, message: `There's no chart` });
             return;
         }
         this.setState({ isOpen: true });
         this.databaseInteraction();
     };
 
+    forAlert = ( alertType, message ) => {
+      this.setState({
+          alertType : alertType,
+          message : message,
+      });
+    };
+
     render () {
+        let validationResult = ( this.validation() );
         return (
             <div className="main">
+                <Alert alertType={ this.state.alertType } message={ this.state.message }/>
                 { ( this.state.isOpen ) ?
-                    <CustomModal closeModal={ this.closeModal } mail={ this.mail } newPost={ this.state.newPost }/> : ''
+                    <CustomModal closeModal={ this.closeModal }
+                                 mail={ this.mail }
+                                 newPost={ this.state.newPost }
+                                 forAlert={ this.forAlert }
+                    /> : ''
                 }
-                <SetData gettingDataList={ this.gettingDataList }/>
+                <SetData gettingDataList={ this.gettingDataList } forAlert={ this.forAlert }/>
                 <div className="view">
-                    <SetType gettingType={ this.gettingType } saveChart={ this.saveChart } emptyData={ this.emptyData }/>
+                    <SetType gettingType={ this.gettingType }
+                             saveChart={ this.saveChart }
+                             emptyData={ this.emptyData }
+                            forAlert={ this.forAlert }
+                    />
                     {
-                        ( this.validation() )  ?
+                        ( validationResult ) ?
                             <Chart type={ this.state.type } dataList={ this.state.dataList } /> : <NoChart />
                     }
                 </div>
