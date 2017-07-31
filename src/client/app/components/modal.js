@@ -26,7 +26,6 @@ class CustomModal extends Component {
                            className="entry-fields"
                            placeholder="Email of the recipient"
                            id="reciever"
-                            value="lata.tiwari@tothenew.com"
                     />
                     <input type="submit" value="Send"/>
                 </form>
