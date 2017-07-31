@@ -104,7 +104,8 @@ let config = {
     devServer: {
         hot: true,
         inline: true,
-        contentBase: BUILD_DIR
+        contentBase: BUILD_DIR,
+        historyApiFallback: true
     }
 };
 

@@ -14,8 +14,8 @@ class Main extends Component {
     constructor () {
         super();
         this.state = {
-            dataList : [{item:"jflfajg",figure:53745}],
-            type: 'Area Chart',
+            dataList : [],
+            type: '',
             isOpen: false,
             newPost:'',
         }
@@ -24,9 +24,7 @@ class Main extends Component {
     gettingDataList = ( list ) => { this.setState({ dataList: list }); };
     gettingType = ( chartType ) => { this.setState({ type:  chartType}); };
 
-    emptyData = () => {
-        this.setState({ dataList : [],  type: ''});
-    };
+    emptyData = () => { this.setState({ dataList : [],  type: ''}); };
 
     convertingChart = () => {
         let target;
@@ -62,9 +60,6 @@ class Main extends Component {
     };
 
     mail = ( newPost, emailTo ) => {
-        console.log("insdie mail function, newPost--------",newPost);
-        console.log("insdie mail function, emailTo--------",emailTo);
-
         let payload = {
             newPost : newPost,
             emailTo : emailTo
@@ -77,8 +72,8 @@ class Main extends Component {
                 },
                 body:JSON.stringify(payload)
             })
-            .then ( (data)=> console.log("inside then, data------",data) )
-            .catch( (err)=> console.log("inside catch, err------",err) );
+            .then ( (data)=> console.log("got results") )
+            .catch( (err)=> console.log("some error") );
     };
 
     saveUrl = ( image ) => {
@@ -104,14 +99,15 @@ class Main extends Component {
     render () {
         return (
             <div className="main">
-                { ( this.state.isOpen ) ?  <CustomModal closeModal={ this.closeModal } mail={ this.mail } newPost={ this.state.newPost }/> : ''}
+                { ( this.state.isOpen ) ?
+                    <CustomModal closeModal={ this.closeModal } mail={ this.mail } newPost={ this.state.newPost }/> : ''
+                }
                 <SetData gettingDataList={ this.gettingDataList }/>
                 <div className="view">
                     <SetType gettingType={ this.gettingType } saveChart={ this.saveChart } emptyData={ this.emptyData }/>
                     {
                         ( this.validation() )  ?
-                            <Chart type={ this.state.type } dataList={ this.state.dataList } /> :
-                            <NoChart />
+                            <Chart type={ this.state.type } dataList={ this.state.dataList } /> : <NoChart />
                     }
                 </div>
             </div>

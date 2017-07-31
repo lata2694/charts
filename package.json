@@ -27,7 +27,7 @@
     "nodemailer": "^4.0.1",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
-    "react-modal": "^2.2.2",
+    "react-dom-server": "0.0.5",
     "react-toastr": "^2.8.2",
     "recharts": "^1.0.0-alpha.2",
     "webpack": "^3.2.0"

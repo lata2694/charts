@@ -206,6 +206,8 @@ aside {
       color: grey;
       cursor: pointer;
       margin: 0px 10px 0px; }
+      .modal form label span:hover {
+        color: red; }
   .modal form .entry-fields {
     height: 30px;
     margin: 10px;

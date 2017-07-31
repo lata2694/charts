@@ -25,6 +25,10 @@
         color:grey;
         cursor: pointer;
         margin: 0px 10px 0px;
+
+        &:hover {
+          color:red;
+        }
       }
     }
     .entry-fields {
