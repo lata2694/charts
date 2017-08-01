@@ -6,8 +6,6 @@ import express from "express";
 import webpack from 'webpack';
 import config from './webpack.config';
 import React from 'react';
-import ReactDOMServer from 'react-dom/server';
-import Result from './src/server/component/result';
 import database, { admin } from './src/server/databaseConfig';
 import sendingMail from './src/server/mailConfig';
 const app = express();

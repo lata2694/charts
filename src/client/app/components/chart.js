@@ -71,13 +71,16 @@ class Chart extends Component {
                                 for ( let i =0; i<data.length; i++ )
                                     COLORS.push('#' + Math.floor(Math.random() * 16777215).toString(16));
                                 let RADIAN = Math.PI / 180;
+                                console.log("data----------",data);
                                 let renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent, index }) => {
+                                    console.log("data in renderCustomizedLabel----------",data);
                                     const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
                                     const x  = cx + radius * Math.cos(-midAngle * RADIAN);
                                     const y = cy  + radius * Math.sin(-midAngle * RADIAN);
+                                    const item = data[index].item;
                                     return (
                                         <text x={x} y={y} fill="white" textAnchor={x > cx ? 'start' : 'end'} dominantBaseline="central">
-                                            {`${(percent * 100).toFixed(0)}%`}
+                                            {`${(percent * 100).toFixed(0)}% : ${ item }`}
                                         </text>
                                     );
                                 };
@@ -108,20 +111,6 @@ class Chart extends Component {
                                     <Legend/>
                                 </RadarChart>
                             ); break;
-
-            case "Radial Bar Chart" : {
-                                        const style = {
-                                            top: 0,
-                                            left: 350,
-                                            lineHeight: '24px'
-                                        };
-                                        chart = (
-                                            <RadialBarChart width={500} height={300} cx={150} cy={150} innerRadius={20} outerRadius={140} barSize={10} data={data}>
-                                                <RadialBar minAngle={15}  label  background clockWise={true} dataKey='figure'/>
-                                                <Legend nameKey='item' iconSize={10} width={120} height={140} layout='vertical' verticalAlign='middle' wrapperStyle={style}/>
-                                                <Tooltip />
-                                            </RadialBarChart>
-                                        );} break;
 
             case "Scatter Chart" : chart = (
                                         <ScatterChart width={400} height={400} margin={{top: 20, right: 20, bottom: 20, left: 20}}>

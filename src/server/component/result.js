@@ -1,6 +1,8 @@
 /**
  * Created by Lata Tiwari on 7/31/2017.
  */
+
+//do not need server side rendering right now
 import React, { Component } from 'react';
 
 class Result extends Component {

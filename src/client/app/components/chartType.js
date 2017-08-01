@@ -28,7 +28,6 @@ class ChartType extends Component {
                     <option value="Line Chart">Line Chart</option>
                     <option value="Pie Chart">Pie Chart</option>
                     <option value="Radar Chart">Radar Chart</option>
-                    <option value="Radial Bar Chart">Radial Bar Chart</option>
                     <option value="Scatter Chart">Scatter Chart</option>
                 </select>
                 <button id="saveChart" onClick={ this.props.saveChart}>Export</button>
