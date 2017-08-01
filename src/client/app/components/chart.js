@@ -2,7 +2,6 @@
  * Created by Lata Tiwari on 7/15/2017.
  */
 import React, { Component } from 'react';
-// require('svg-url-loader!');
 import { AreaChart,
     BarChart,
     ComposedChart,
@@ -31,6 +30,14 @@ class Chart extends Component {
         this.state= {
             data: this.props.dataList,
             type: this.props.type,
+        }
+    };
+
+    componentWillReceiveProps = ( nextProps ) => {
+      if ( nextProps !== this.props ) {
+            this.setState({ type:nextProps.type, data: nextProps.dataList }, ()=> {
+                        this.userChart( this.state.type, this.state.data );
+                    });
         }
     };
 
@@ -98,6 +105,7 @@ class Chart extends Component {
                                     <PolarGrid />
                                     <PolarAngleAxis dataKey="item" />
                                     <PolarRadiusAxis/>
+                                    <Legend/>
                                 </RadarChart>
                             ); break;
 
@@ -109,8 +117,9 @@ class Chart extends Component {
                                         };
                                         chart = (
                                             <RadialBarChart width={500} height={300} cx={150} cy={150} innerRadius={20} outerRadius={140} barSize={10} data={data}>
-                                                <RadialBar minAngle={15} label background clockWise={true} dataKey='figure'/>
-                                                <Legend iconSize={10} width={120} height={140} layout='vertical' verticalAlign='middle' wrapperStyle={style}/>
+                                                <RadialBar minAngle={15}  label  background clockWise={true} dataKey='figure'/>
+                                                <Legend nameKey='item' iconSize={10} width={120} height={140} layout='vertical' verticalAlign='middle' wrapperStyle={style}/>
+                                                <Tooltip />
                                             </RadialBarChart>
                                         );} break;
 
@@ -119,7 +128,8 @@ class Chart extends Component {
                                         <XAxis dataKey={'item'} name='item' />
                                         <YAxis dataKey={'figure'} name='figure' />
                                         <Scatter name='data' data={data} fill='#8884d8'/>
-                                        <CartesianGrid />
+                                            <Legend/>
+                                            <CartesianGrid />
                                         <Tooltip cursor={{strokeDasharray: '3 3'}}/>
                                     </ScatterChart>
                                     );break;
@@ -130,6 +140,7 @@ class Chart extends Component {
                                 <YAxis/>
                                 <CartesianGrid strokeDasharray="3 3"/>
                                 <Tooltip/>
+                                <Legend/>
                                 <Area type='monotone' dataKey='figure' stroke='#8884d8' fill='#8884d8' />
                             </AreaChart>
                         );break;

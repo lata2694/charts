@@ -10,7 +10,6 @@ import ReactDOMServer from 'react-dom/server';
 import Result from './src/server/component/result';
 import database, { admin } from './src/server/databaseConfig';
 import sendingMail from './src/server/mailConfig';
-
 const app = express();
 const port = "9000";
 const bodyParser = require('body-parser');
@@ -27,17 +26,7 @@ app.use( require( 'webpack-hot-middleware')( compiler ));
 app.use( bodyParser() );
 
 app.use( '/sendMail',( request, response ) => {
-    sendingMail( { to:request.body.emailTo, html: `<a href=http://localhost:9000/image?post=`+request.body.newPost+`> here </a> `} );
-    response.send({ status : true });
-});
-
-app.get( '/image', ( request, response ) => {
-    database.on("child_added", function(snapshot, prevChildKey) {
-        let uri = '';
-        ( request.query.post === snapshot.key ) ? uri = snapshot.val() : '';
-        const html = ReactDOMServer.renderToString(<Result source={ uri } />);
-        response.send(`<!doctype html>${html}`);
-    });
+    sendingMail( { to:request.body.emailTo, imgSrc: request.body.imgSrc});
 });
 
 app.use ( '/*', ( req, res, next ) => {

@@ -26,7 +26,7 @@ class SetData extends Component {
             figure: this.state.figure
         };
         localDatalist.push(obj);
-        this.setState({ dataList:localDatalist },() => { this.props.gettingDataList( this.state.dataList ); });
+        this.setState({ dataList:localDatalist },() => { console.log("this.state.dataList--",this.state.dataList);this.props.gettingDataList( this.state.dataList ); });
         document.getElementById('item').value= '';
         document.getElementById('figure').value= undefined;
 

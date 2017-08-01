@@ -12,9 +12,9 @@ class CustomModal extends Component {
     onSubmit = ( event ) => {
        event.preventDefault();
        let emailTo = document.getElementById('reciever').value;
-       this.props.mail( this.props.newPost, emailTo );
+       this.props.mail( emailTo );
+       this.props.forAlert( `success`, `Mail Sent` );
        this.props.closeModal();
-        this.props.forAlert( `sucsess`, `Mail Sent` );
     };
 
     render () {

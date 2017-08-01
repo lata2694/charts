@@ -3,7 +3,6 @@
  */
 
 let nodemailer = require('nodemailer');
-
 let transporter, sendingMail;
 
 transporter = nodemailer.createTransport({
@@ -12,16 +11,20 @@ transporter = nodemailer.createTransport({
         user: 'lata.tiwari@tothenew.com',
         pass: 'miyanhaeabha'
     },
-    logger: true, // log to console
-    debug: true // include SMTP traffic in the logs
 });
-
 sendingMail = ( params ) => {
         let options = {
+            attachments: [
+                {
+                    filename: 'chart.png',
+                    path: params.imgSrc,
+                    cid: params.imgSrc,
+                }
+            ],
             from : 'lata.tiwari@tothenew.com',
             to : params.to,
-            subject : "chart",
-            html : params.html
+            subject : "CHARTS",
+            html: `<img src="cid:${ params.imgSrc }" alt="chart is here"/>`,
         };
 
         transporter.sendMail(options);

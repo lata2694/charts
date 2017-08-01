@@ -11,16 +11,9 @@ class ChartType extends Component {
             type: '',
         }
     }
-    onChangeHandler = ( event ) => { this.setState({ type:event.target.value }); };
-
-    onClickHandler = ( event ) => {
-        event.preventDefault();
-        if( this.state.type === '' ) {
-            this.props.forAlert( 'error', "Please select a type of chart" );
-            return;
-        }
+    onChangeHandler = ( event ) => { this.setState({ type:event.target.value }, () => {
         this.props.gettingType( this.state.type );
-    };
+    })};
 
     render () {
         return (
@@ -39,8 +32,6 @@ class ChartType extends Component {
                     <option value="Scatter Chart">Scatter Chart</option>
                 </select>
                 <button id="saveChart" onClick={ this.props.saveChart}>Export</button>
-                <button id="showChart" onClick={ this.onClickHandler }>Show Chart</button>
-                <button id="clearAll" onClick={ this.props.emptyData }>Clear Chart</button>
             </div>
         );
     }
