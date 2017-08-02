@@ -10,7 +10,8 @@ class ChartType extends Component {
         this.state = {
             type: '',
         }
-    }
+    };
+
     onChangeHandler = ( event ) => { this.setState({ type:event.target.value }, () => {
         this.props.gettingType( this.state.type );
     })};
@@ -30,7 +31,7 @@ class ChartType extends Component {
                     <option value="Radar Chart">Radar Chart</option>
                     <option value="Scatter Chart">Scatter Chart</option>
                 </select>
-                <button id="saveChart" onClick={ this.props.saveChart}>Export</button>
+                <button id="saveChart" onClick={ this.props.saveChart }>Export</button>
             </div>
         );
     }

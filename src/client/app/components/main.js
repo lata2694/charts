@@ -25,18 +25,13 @@ class Main extends Component {
         }
     };
 
-    gettingDataList = ( list ) => { this.setState({ dataList: list }); };
-    gettingType = ( chartType ) => { this.setState({ type:  chartType}); };
-
     convertingChart = () => {
         let target;
         target = document.getElementsByClassName( "recharts-surface" )[0];
         renderImage( target );
     };
 
-    validation = () => (!!(this.state.type && this.state.dataList.length ));
-
-    closeModal = () => { this.setState({ isOpen : false }); };
+    closeModal = () => { this.setState({ isOpen : false,alertType:'',message }); };
 
     databaseInteraction = () => {
 
@@ -51,6 +46,7 @@ class Main extends Component {
             let storedKey;
             if ( count === 1 ) {
                 newPost = this.saveUrl( image );
+                console.log("newPost---------",newPost);
                 this.setState ({ newPost : newPost , imgSrc: image.src});
                 count = count+1;
                 return;
@@ -60,6 +56,18 @@ class Main extends Component {
             }
         } );
     };
+
+    forAlert = ( alertType, message ) => {
+        console.log(alertType, "--------for Alert----------",message);
+        this.setState(    {
+            alertType : alertType,
+            message : message,
+        });
+    };
+
+    gettingDataList = ( list ) => { this.setState({ dataList: list },()=>console.log("--------------this.state.dataList",this.state.dataList)); };
+
+    gettingType = ( chartType ) => { this.setState({ type:  chartType}); };
 
     mail = ( emailTo ) => {
         let payload = {
@@ -82,7 +90,6 @@ class Main extends Component {
     saveUrl = ( image ) => {
         let newPost;
         database.push().set( image.src );
-
         database.on("child_added", function(snapshot, prevChildKey) {
             newPost = snapshot.key;
         });
@@ -90,6 +97,7 @@ class Main extends Component {
     };
 
     saveChart = ( event ) => {
+        console.log("in save Chart-----------",this.state.isOpen);
         event.preventDefault();
         if ( !this.validation() ) {
             this.setState({ alertType: `error`, message: `There's no chart` });
@@ -99,18 +107,13 @@ class Main extends Component {
         this.databaseInteraction();
     };
 
-    forAlert = ( alertType, message ) => {
-      this.setState({
-          alertType : alertType,
-          message : message,
-      });
-    };
+    validation = () => (!!(this.state.type && this.state.dataList.length ));
 
     render () {
         let validationResult = ( this.validation() );
         return (
             <div className="main">
-                <Alert alertType={ this.state.alertType } message={ this.state.message }/>
+                {  (this.state.alertType &&  this.state.message) ? <Alert alertType={ this.state.alertType } message={ this.state.message }/> : null }
                 { ( this.state.isOpen ) ?
                     <CustomModal closeModal={ this.closeModal }
                                  mail={ this.mail }

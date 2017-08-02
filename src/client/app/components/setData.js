@@ -13,35 +13,44 @@ class SetData extends Component {
             item:'',
             figure:0,
         };
-    }
+    };
+
     addingField = () => {
+        console.log("adding item");
         event.preventDefault();
         if( this.validation() ) {
             this.props.forAlert( `error`, "Please add items and value" );
             return ;
+        } else {
+            let localDatalist = this.state.dataList;
+            let obj = {
+                item: this.state.item,
+                figure: this.state.figure
+            };
+            localDatalist.push(obj);
+            this.setState({ dataList:localDatalist, item: '', figure: 0 },() => { this.props.gettingDataList( this.state.dataList ); });
+            document.getElementById('item').value= '';
+            document.getElementById('figure').value= undefined;
+
         }
-        let localDatalist = this.state.dataList;
-        let obj = {
-            item: this.state.item,
-            figure: this.state.figure
-        };
-        localDatalist.push(obj);
-        this.setState({ dataList:localDatalist },() => { console.log("this.state.dataList--",this.state.dataList);this.props.gettingDataList( this.state.dataList ); });
-        document.getElementById('item').value= '';
-        document.getElementById('figure').value= undefined;
 
     };
+
+    onChangeHandler = (event) => {
+        ( event.target.name==='item' ) ? this.state.item = event.target.value : this.state.figure = parseInt(event.target.value);
+    };
+
     removingField = ( item ) => {
+        console.log("removing item");
+
         event.preventDefault();
         let newDataList = [];
         newDataList = this.state.dataList.filter ( function ( element ) {
             if( item !== element.item )  return element;
         } );
-        this.setState({ dataList: newDataList });
+        this.setState({ dataList: newDataList, item: '', figure: 0 },() => { this.props.gettingDataList( this.state.dataList ); });
     };
-    onChangeHandler = (event) => {
-        ( event.target.name==='item' ) ? this.state.item = event.target.value : this.state.figure = parseInt(event.target.value);
-    };
+
     validation = () => { return ( this.state.item === '' || this.state.figure === 0 ) };
 
     render() {
