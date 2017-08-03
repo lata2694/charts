@@ -65,7 +65,7 @@ class Main extends Component {
         });
     };
 
-    gettingDataList = ( list ) => { this.setState({ dataList: [...list] },()=>console.log("parent--------------this.state.dataList",this.state.dataList)); };
+    gettingDataList = ( list ) => { this.setState({ dataList: [...list] }) };
 
     gettingType = ( chartType ) => { this.setState({ type:  chartType}); };
 

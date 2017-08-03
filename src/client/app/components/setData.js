@@ -29,7 +29,7 @@ class SetData extends Component {
                 figure: this.state.figure
             };
             localDatalist.push(obj);
-            this.setState({ dataList:localDatalist, item: '', figure: 0 },() => { console.log("left chiled-------",this.state.dataList);this.props.gettingDataList( this.state.dataList ); });
+            this.setState({ dataList:localDatalist, item: '', figure: 0 },() => { this.props.gettingDataList( this.state.dataList ); });
             document.getElementById('item').value= '';
             document.getElementById('figure').value= undefined;
 

@@ -30,15 +30,16 @@ class Chart extends Component {
         }
     };
 
+    componentWillMount  ()  {
+        const { type, dataList } = this.props;
+        this.setState({ type:type, data: dataList }, ()=> {
+        });
+    };
     componentWillReceiveProps( nextProps ) {
-        console.log("right child----------", nextProps);
-            this.setState({ type:nextProps.type, data: nextProps.dataList }, ()=> {
-                // this.userChart( this.state.type, this.state.data );
-            });
+        this.setState({ type:nextProps.type, data: nextProps.dataList });
     };
 
     userChart = ( type, data ) => {
-        console.log('')
         let chart = '';
         switch ( type ) {
             case "Bar Chart" : chart = (

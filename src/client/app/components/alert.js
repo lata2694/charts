@@ -77,6 +77,7 @@ export default class Alert extends Component {
 
 
     successAlert = ( message ) => {
+        console.log("successAlert");
         this.refs.container.success(`${ message }`, ` `, {
             closeButton: true,
         });
