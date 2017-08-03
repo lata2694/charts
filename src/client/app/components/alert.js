@@ -16,55 +16,30 @@ export default class Alert extends Component {
 
     };
 
-    // alert = ( type, message) => {
-    //     if( type === 'error' ) {
-    //         this.refs.container.error(`${ message }`, ` `, {
-    //             closeButton: true,
-    //         });
-    //         this.setState({ alertType: '', message: '' });
-    //         return;
-    //     }
-    //
-    //     if ( type === 'success' ) {
-    //         this.refs.container.success(`${ message }`, ` `, {
-    //             closeButton: true,
-    //         });
-    //         this.setState({ alertType: '', message: '' });
-    //         return;
-    //     }
-    // };
+    componentWillMount  ()  {
+        const { alertType, message } = this.props;
+        this.setState({ alertType:alertType, message: message }, ()=> {
+            this.alert( this.state.alertType,this.state. message );
+        });
+    };
 
-    componentWillReceiveProps = ( nextProps )=>     {
-
+    componentWillReceiveProps ( nextProps ) {
         let alert, msg;
         alert = this.props.alertType;
-        msg = this.props.message;
+        this.setState({ alertType: nextProps.alertType, message: nextProps.message }, ()=> {
+            this.alert(  this.state.alertType,this.state. message );
+        });
+    };
 
-        console.log(this.props,"------------",nextProps);
-
-        // if ( nextProps.alertType!= this.props.alertType || nextProps.message!= this.props.message ) {
-        // if ( nextProps!== this.props ) {
-            console.log(this.props,"------in FIRST if------",nextProps);
-
-            this.setState({ alertType: nextProps.alertType, message: nextProps.message }, ()=> {
-            // if ( alert === `error` ) {
-                if ( this.state.alertType === `error` ) {
-                console.log(this.props,"------in SECOND if------",nextProps);
-
-                this.errorAlert(this.state.message);
-                // this.errorAlert(msg);
-                return;
-            }
-            // if ( alert === `success` ) {
-                if ( this.state.alertType === `success` ) {
-                console.log(this.props,"------in THIRD if------",nextProps);
-
-                this.successAlert( this.state.message );
-                // this.successAlert( msg );
-                return;
-            }
-            });
-        // }
+    alert = (  type, message ) => {
+        if ( type == "error" ) {
+            this.errorAlert(message);
+            return;
+        }
+        if ( type == "success" ) {
+            this.successAlert( message );
+            return;
+        }
     };
 
     errorAlert = ( message ) => {
@@ -72,17 +47,14 @@ export default class Alert extends Component {
             closeButton: true,
         });
         this.setState({ alertType: '', message: '' });
-
     };
 
 
     successAlert = ( message ) => {
-        console.log("successAlert");
         this.refs.container.success(`${ message }`, ` `, {
             closeButton: true,
         });
         this.setState({ alertType: '', message: '' });
-
     };
 
     render(){
