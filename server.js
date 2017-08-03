@@ -26,7 +26,7 @@ app.use( '/sendMail',( request, response ) => {
 });
 
 app.use ( '/*', ( req, res, next ) => {
-    res.sendFile(__dirname+'\\src\\client\\public\\index.html');
+    res.sendFile(__dirname+'\\src\\client\\public');
     // app.use('/', express.static(path.join(__dirname, '\\src\\client\\public')));
 });
 
