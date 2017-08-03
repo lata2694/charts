@@ -7,6 +7,7 @@ let path = require('path');
 let HtmlWebpackPlugin = require('html-webpack-plugin');
 let BUILD_DIR = path.resolve(__dirname, 'src/client/public');
 let APP_DIR = path.resolve(__dirname, 'src/client/app');
+let UglifyJsPlugin = require('uglify-js-plugin');
 
 let config = {
     entry: [
@@ -49,12 +50,15 @@ let config = {
     //historyApiFallback : to serve your index.html in place of 404
     plugins: [
         new HtmlWebpackPlugin({
-            template: path.join(__dirname, './public/index.html'),
+            template: path.join(__dirname, 'src/client/public/index.html'),
             filename: 'index.html',
             multistep: true,
             historyApiFallback: true
         }),
-
+        // new UglifyJsPlugin({
+        //     compress: true,
+        //     debug: true
+        // }),
         new webpack.optimize.OccurrenceOrderPlugin(),
         new webpack.HotModuleReplacementPlugin(),
     ],
