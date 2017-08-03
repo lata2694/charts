@@ -31,7 +31,7 @@ class Main extends Component {
         renderImage( target );
     };
 
-    closeModal = () => { this.setState({ isOpen : false,alertType:'',message }); };
+    closeModal = () => { this.setState({ isOpen : false,alertType:'',message: ''}); };
 
     databaseInteraction = () => {
 
@@ -65,7 +65,7 @@ class Main extends Component {
         });
     };
 
-    gettingDataList = ( list ) => { this.setState({ dataList: list },()=>console.log("--------------this.state.dataList",this.state.dataList)); };
+    gettingDataList = ( list ) => { this.setState({ dataList: [...list] },()=>console.log("parent--------------this.state.dataList",this.state.dataList)); };
 
     gettingType = ( chartType ) => { this.setState({ type:  chartType}); };
 
@@ -87,6 +87,13 @@ class Main extends Component {
             .catch( (err)=> console.log("some error") );
     };
 
+    noAlert = () => {
+        this.setState(    {
+            alertType : '',
+            message : '',
+        });
+    };
+
     saveUrl = ( image ) => {
         let newPost;
         database.push().set( image.src );
@@ -100,11 +107,14 @@ class Main extends Component {
         console.log("in save Chart-----------",this.state.isOpen);
         event.preventDefault();
         if ( !this.validation() ) {
-            this.setState({ alertType: `error`, message: `There's no chart` });
+            this.forAlert(`error`,`There's no chart`);
             return;
+        } else {
+            this.noAlert();
+            this.setState({ isOpen: true });
+            this.databaseInteraction();
         }
-        this.setState({ isOpen: true });
-        this.databaseInteraction();
+
     };
 
     validation = () => (!!(this.state.type && this.state.dataList.length ));
@@ -119,14 +129,16 @@ class Main extends Component {
                                  mail={ this.mail }
                                  newPost={ this.state.newPost }
                                  forAlert={ this.forAlert }
+                                 noAlert={ this.noAlert }
                     /> : ''
                 }
-                <SetData gettingDataList={ this.gettingDataList } forAlert={ this.forAlert }/>
+                <SetData gettingDataList={ this.gettingDataList } forAlert={ this.forAlert } noAlert={ this.noAlert }/>
                 <div className="view">
                     <SetType gettingType={ this.gettingType }
                              saveChart={ this.saveChart }
                              emptyData={ this.emptyData }
                             forAlert={ this.forAlert }
+                             noAlert={ this.noAlert }
                     />
                     {
                         ( validationResult ) ?

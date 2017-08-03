@@ -25,20 +25,20 @@ class Chart extends Component {
     constructor( props ){
         super( props );
         this.state= {
-            data: this.props.dataList,
-            type: this.props.type,
+            data: '',
+            type: '',
         }
     };
 
-    componentWillReceiveProps = ( nextProps ) => {
-        if ( nextProps !== this.props ) {
+    componentWillReceiveProps( nextProps ) {
+        console.log("right child----------", nextProps);
             this.setState({ type:nextProps.type, data: nextProps.dataList }, ()=> {
-                this.userChart( this.state.type, this.state.data );
+                // this.userChart( this.state.type, this.state.data );
             });
-        }
     };
 
     userChart = ( type, data ) => {
+        console.log('')
         let chart = '';
         switch ( type ) {
             case "Bar Chart" : chart = (
@@ -136,9 +136,10 @@ class Chart extends Component {
     };
 
     render () {
+        const { type, data } = this.state;
         return (
             <div className="display-chart" id="chartContainer">
-                {this.userChart( this.state.type, this.state.data )}
+                {this.userChart( type, data )}
             </div> ) ;
     }
 }
