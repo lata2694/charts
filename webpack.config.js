@@ -7,7 +7,6 @@ let path = require('path');
 let HtmlWebpackPlugin = require('html-webpack-plugin');
 let BUILD_DIR = path.resolve(__dirname, 'src/client/public');
 let APP_DIR = path.resolve(__dirname, 'src/client/app');
-let UglifyJsPlugin = require('uglify-js-plugin');
 
 let config = {
     entry: [
@@ -55,10 +54,6 @@ let config = {
             multistep: true,
             historyApiFallback: true
         }),
-        // new UglifyJsPlugin({
-        //     compress: true,
-        //     debug: true
-        // }),
         new webpack.optimize.OccurrenceOrderPlugin(),
         new webpack.HotModuleReplacementPlugin(),
     ],
