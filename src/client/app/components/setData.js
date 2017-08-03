@@ -16,7 +16,6 @@ class SetData extends Component {
     };
 
     addingField = () => {
-        console.log("adding item");
         event.preventDefault();
         if( this.validation() ) {
             this.props.forAlert( `error`, "Please add items and value" );
@@ -42,8 +41,6 @@ class SetData extends Component {
     };
 
     removingField = ( item ) => {
-        console.log("removing item");
-
         event.preventDefault();
         let newDataList = [];
         newDataList = this.state.dataList.filter ( function ( element ) {

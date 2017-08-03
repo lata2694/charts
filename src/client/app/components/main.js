@@ -46,7 +46,6 @@ class Main extends Component {
             let storedKey;
             if ( count === 1 ) {
                 newPost = this.saveUrl( image );
-                console.log("newPost---------",newPost);
                 this.setState ({ newPost : newPost , imgSrc: image.src});
                 count = count+1;
                 return;
@@ -58,7 +57,6 @@ class Main extends Component {
     };
 
     forAlert = ( alertType, message ) => {
-        console.log(alertType, "--------for Alert----------",message);
         this.setState(    {
             alertType : alertType,
             message : message,
@@ -104,7 +102,6 @@ class Main extends Component {
     };
 
     saveChart = ( event ) => {
-        console.log("in save Chart-----------",this.state.isOpen);
         event.preventDefault();
         if ( !this.validation() ) {
             this.forAlert(`error`,`There's no chart`);

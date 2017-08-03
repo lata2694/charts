@@ -58,7 +58,6 @@ export default class Alert extends Component {
     };
 
     render(){
-        console.log("inside alert",this.props);
         return(
             <ToastContainer
                 toastMessageFactory={ToastMessageFactory}

@@ -15,18 +15,15 @@ class CustomModal extends Component {
         emailTo = document.getElementById('reciever');
         emailToVlaue = emailTo.value;
         if ( emailToVlaue ) {
-            console.log("onsubmit IF----------");
             this.props.mail( emailToVlaue );
             this.props.forAlert( `success`, `Mail Sent` );
             emailTo.value = '';
         } else {
-            console.log("onsubmit ELSE----------");
             this.props.forAlert( `error`, `Please enter a valid email` );
         }
     };
 
     render () {
-        console.log("*************inside customModal************");
         return(
             <div className="modal">
                 <form onSubmit={ this.onSubmit }>
