@@ -5,8 +5,6 @@
 import express from "express";
 import webpack from 'webpack';
 import config from './webpack.config';
-import React from 'react';
-import database, { admin } from './src/server/databaseConfig';
 import sendingMail from './src/server/mailConfig';
 const app = express();
 const port = "9000";
