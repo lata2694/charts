@@ -5,13 +5,10 @@
 let webpack = require('webpack');
 let path = require('path');
 let HtmlWebpackPlugin = require('html-webpack-plugin');
-let ExtractTextPlugin = require ('extract-text-webpack-plugin');
-
 let BUILD_DIR = path.resolve(__dirname, 'src/client/public');
 let APP_DIR = path.resolve(__dirname, 'src/client/app');
 
 let config = {
-
     entry: [
         APP_DIR + '/index.jsx'
     ],
@@ -25,13 +22,13 @@ let config = {
     module: {
         loaders: [
             {
-                test: /\.jsx?/,
+                test: /\.(js|jsx)?/,
                 include: APP_DIR,
                 loader: 'babel-loader',
             },
 
             {
-                test: /\.scss$/,
+                test: /\.(css|scss)$/,
                 loaders: ['style-loader', 'css-loader', 'sass-loader']
             },
 
@@ -52,7 +49,7 @@ let config = {
     //historyApiFallback : to serve your index.html in place of 404
     plugins: [
         new HtmlWebpackPlugin({
-            template: path.join(__dirname, 'src/client/index.html'),
+            template: path.join(__dirname, './public/index.html'),
             filename: 'index.html',
             multistep: true,
             historyApiFallback: true
