@@ -4,7 +4,6 @@
 
 let webpack = require('webpack');
 let path = require('path');
-// let HtmlWebpackPlugin = require('html-webpack-plugin');
 let BUILD_DIR = path.resolve(__dirname, 'src/client/app/public');
 let APP_DIR = path.resolve(__dirname, 'src/client/app');
 
@@ -48,12 +47,6 @@ let config = {
 
     //historyApiFallback : to serve your index.html in place of 404
     plugins: [
-        // new HtmlWebpackPlugin({
-        //     template: path.join(__dirname, 'public/index.html'),
-        //     filename: 'index.html',
-        //     multistep: true,
-        //     historyApiFallback: true
-        // }),
 
         new webpack.optimize.OccurrenceOrderPlugin(),
         new webpack.HotModuleReplacementPlugin(),
