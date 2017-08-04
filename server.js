@@ -30,8 +30,5 @@ app.use ( '/*', ( req, res, next ) => {
     // res.sendFile(__dirname+'\\src\\client\\app\\public');
 });
 
-app.listen( port, ()=>{
-    console.log("charts started");
-});
-
+app.listen(process.env.PORT || port, ()=> console.log("app started"));
 
