@@ -32,7 +32,7 @@ let config = {
                 test: /\.(png|jpg|gif|ico)$/,
                 use: [
                     {
-                        loader: 'url-loader',
+                        loader: 'url-loader?name=[name].[ext]',
                         options: {
                             limit: 8192
                         }
@@ -47,6 +47,7 @@ let config = {
         new HtmlWebpackPlugin({
             template: path.join(__dirname, 'build/index.html'),
             filename: 'index.html',
+            favicon: 'src/client/app/assets/images/favicon.ico',
             multistep: true,
             historyApiFallback: true
         }),
