@@ -9,7 +9,7 @@ import NoChart from './noChart';
 import CustomModal from './modal';
 import renderImage from '../conversion';
 import Alert from './alert';
-import database, { firebase } from '../../databaseConfig';
+import database, { firebase } from '../databaseConfig';
 
 class Main extends Component {
     constructor () {

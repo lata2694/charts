@@ -26,7 +26,8 @@ app.use( '/sendMail',( request, response ) => {
 });
 
 app.use ( '/*', ( req, res, next ) => {
-    res.sendFile(__dirname+'\\src\\client\\app\\public');
+    res.sendFile(__dirname+'\\src\\client\\index.html');
+    // res.sendFile(__dirname+'\\src\\client\\app\\public');
 });
 
 app.listen( port, ()=>{
