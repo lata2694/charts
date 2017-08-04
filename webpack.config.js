@@ -49,7 +49,7 @@ let config = {
     //historyApiFallback : to serve your index.html in place of 404
     plugins: [
         new HtmlWebpackPlugin({
-            template: path.join(__dirname, '../index.html'),
+            template: path.join(__dirname, '../client/public/index.html'),
             filename: 'index.html',
             multistep: true,
             historyApiFallback: true
