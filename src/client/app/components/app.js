@@ -4,7 +4,6 @@ import React, { Component } from 'react';
 import Header from './header';
 import Main from './main';
 import '../assets/styles/style.scss';
-
 class App extends Component {
     render () {
         return (
@@ -15,5 +14,4 @@ class App extends Component {
         );
     }
 }
-
 export default App;
